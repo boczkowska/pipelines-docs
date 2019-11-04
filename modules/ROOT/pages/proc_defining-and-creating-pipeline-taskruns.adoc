@@ -1,0 +1,37 @@
+// Ths module is included in the following assembly:
+//
+// assembly_creating-openshift-pipelines.adoc
+
+[id="defining-and-creating-pipeline-taskruns_{context}"]
+= Defining and creating pipeline TaskRuns
+
+A `TaskRun` runs the `Task`.
+
+== Procedure
+
+.To create the Maven `TaskRun`: 
+
+. Copy the contents of the following sample `TaskRun` YAML file and save it:
++
+----
+apiVersion: tekton.dev/v1alpha1
+kind: TaskRun
+metadata:
+  name: maven-build-task-run
+spec:
+  taskRef:
+    name: maven-build
+----
+
+. Apply the configuration:
++
+----
+$ kubectl apply -f <name-of-file.yaml>
+----
+
+. See the output of the `TaskRun`:
++
+----
+$ tkn taskrun describe maven-build-task-run
+$ tkn taskrun logs maven-build-task-run
+----
